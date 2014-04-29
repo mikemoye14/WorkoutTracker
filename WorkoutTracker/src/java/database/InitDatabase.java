@@ -8,9 +8,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/** 
+ * InitDatabase.java 
+ * Purpose: Initializes DB
  *
- * @author Mike Moye <mikemoye14@gmail.com>
+ * @author Mike Moye <mikemoye14@gamil.com>
+ * @version 1.0 29 April 2014
+ *
  */
 public class InitDatabase {
 

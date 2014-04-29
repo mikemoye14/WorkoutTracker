@@ -1,25 +1,25 @@
 package database;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/** 
+ * DatabaseInterface.java 
+ * Purpose: interface between app and DB
  *
  * @author Mike Moye <mikemoye14@gamil.com>
+ * @version 1.0 29 April 2014
+ *
  */
 public class DatabaseInterface {
     
     //private User user
-    private static String url = "jdbc:derby://localhost:1527/WorkoutTracker";
-    private static String userName = "mike";
-    private static String pwd = "mike";
+    private static final String url = "jdbc:derby://localhost:1527/WorkoutTracker";
+    private static final String userName = "mike";
+    private static final String pwd = "mike";
     private static Connection con;
     
     public static void main(String[] args){
@@ -47,7 +47,19 @@ public class DatabaseInterface {
     
     private void createNewUser(String user){
         
-        String query = "INSERT INTO User";        
+        String query =  "INSERT INTO xUser\n" +
+                        "(\n" +
+                        "    fName,\n" +
+                        "    lName,\n" +
+                        "    age\n" +
+                        ")\n" +
+                        "VALUES(\n" +
+                        "\n" +
+                        "    'Mike',\n" +
+                        "    'M',\n" +
+                        "    25\n" +
+                        "\n" +
+                        ")";        
         
         //con.createStatement();
     }
@@ -81,66 +93,6 @@ public class DatabaseInterface {
         float calories = 0;
         
         return calories;
-    }
-    
-    /*
-    private void connectToDB(){
-        //String className=null;
-        String url=null;
-        String user = null;
-        String password = null;
-        
-        try
-        {
-            //ResourceBundle resources;
-            //InputStream in = null;
-            //ResourceBundle newResources;
-
-            //in = ClassLoader.getSystemResourceAsStream("db.properties");
-
-            //resources = new PropertyResourceBundle(in);
-
-            //in.close();
-
-            //className = resources.getString("jdbc.driver");
-            //url = resources.getString("jdbc.url");
-            //System.out.println(url);
-            //user = resources.getString("jdbc.user");
-            //password = resources.getString("jdbc.password");
-        }
-        catch (Exception exp)
-        {
-            //System.out.println("Couldn't load resources." + exp);
-            //System.exit(-1);
-        }
-        
-        try
-        {
-            //Class.forName(className);
-        }
-        catch (Exception e) 
-        {
-            //System.out.println("Failed to load  driver.");
-            //return;
-        }
-        
-        try
-        {
-                  
-                
-            //Statement stmt = con.createStatement();
-
-            //stmt.execute("SELECT * FROM USERINFO");       
-        
-            //stmt.close();
-        
-            con.close();
-        }
-        catch (Exception e) 
-        {
-            //System.out.println(e);
-        }
-    }
-    */
+    } 
     
 }

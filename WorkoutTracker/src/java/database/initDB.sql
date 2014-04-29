@@ -10,7 +10,7 @@ CREATE TABLE xUser
     UserId INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     fName VARCHAR(25) NOT NULL, 
     lName VARCHAR(50) NOT NULL,
-    age int NOT NULL,    
+    age INT NOT NULL,    
 
     CONSTRAINT pk_User PRIMARY KEY (UserId)
 
