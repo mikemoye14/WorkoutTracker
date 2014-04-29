@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package database;
 
 import java.sql.Connection;
@@ -14,13 +10,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Mike Moye <mtm5313@psu.edu>
+ * @author Mike Moye <mikemoye14@gmail.com>
  */
 public class InitDatabase {
 
-    private static String url = "jdbc:derby://localhost:1527/WorkoutTracker";
-    private static String userName = "mike";
-    private static String pwd = "mike";
+    private static final String url = "jdbc:derby://localhost:1527/WorkoutTracker";
+    private static final String userName = "mike";
+    private static final String pwd = "mike";
     private static Connection con;
 
     public static void main(String[] args) {
