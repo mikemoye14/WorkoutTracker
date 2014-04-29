@@ -9,7 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * DatabaseInterface.java Purpose: interface between app and DB
+ * DatabaseInterface.java 
+ * Purpose: interface between app and DB
  *
  * @author Mike Moye <mikemoye14@gamil.com>
  * @version 1.0 29 April 2014
@@ -31,13 +32,13 @@ public class DatabaseInterface {
         DatabaseInterface di = new DatabaseInterface(new User("Mike", "Mo", 25));
 
         di.createNewUser();
-        
+
         di.updateHeartRate(user, 209, "04/23/2014", "14:19");
-        
+
         di.updateDistance(user, "04/23/2014", "14:19", 100);
-        
+
         di.updateSpeed(user, "04/23/2014", "14:19", 100);
-        
+
         di.updateCalories(user, "04/23/2014", "14:19", 100);
 
         //System.out.println(System.getProperty("java.home"));
@@ -52,7 +53,7 @@ public class DatabaseInterface {
     private void createNewUser() {
 
         try {
-            
+
             con = DriverManager.getConnection(url, userName, pwd);
 
             //create blank user
@@ -115,7 +116,7 @@ public class DatabaseInterface {
 
     private void updateHeartRate(User user, int rate, String date, String time) {
         try {
-            
+
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
@@ -135,9 +136,8 @@ public class DatabaseInterface {
                     + "    " + rate + "\n"
                     + "\n"
                     + ")";
-            
-            //System.out.print(query);
 
+            //System.out.print(query);
             stmt = con.createStatement();
             stmt.executeUpdate(query);
 
@@ -149,8 +149,8 @@ public class DatabaseInterface {
     }
 
     private void updateDistance(User user, String date, String time, int distance) {
-         try {
-            
+        try {
+
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
@@ -170,9 +170,8 @@ public class DatabaseInterface {
                     + "    " + distance + "\n"
                     + "\n"
                     + ")";
-            
-            //System.out.print(query);
 
+            //System.out.print(query);
             stmt = con.createStatement();
             stmt.executeUpdate(query);
 
@@ -185,7 +184,7 @@ public class DatabaseInterface {
 
     private void updateSpeed(User user, String date, String time, int speed) {
         try {
-            
+
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
@@ -205,9 +204,8 @@ public class DatabaseInterface {
                     + "    " + speed + "\n"
                     + "\n"
                     + ")";
-            
-            //System.out.print(query);
 
+            //System.out.print(query);
             stmt = con.createStatement();
             stmt.executeUpdate(query);
 
@@ -220,7 +218,7 @@ public class DatabaseInterface {
 
     private void updateCalories(User user, String date, String time, int calories) {
         try {
-            
+
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
@@ -240,9 +238,8 @@ public class DatabaseInterface {
                     + "    " + calories + "\n"
                     + "\n"
                     + ")";
-            
-            //System.out.print(query);
 
+            //System.out.print(query);
             stmt = con.createStatement();
             stmt.executeUpdate(query);
 

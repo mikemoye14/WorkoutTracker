@@ -1,7 +1,6 @@
 package database;
 
-
-/** 
+/**
  * User.java 
  * Purpose: Creates a User
  *
@@ -14,15 +13,15 @@ public class User {
     private String fName = "";
     private String lName = "";
     private int age = 0;
-    
+
     private int userID = 0;
-    
+
     /**
      * Default Constructor
      */
     public User() {
     }
-    
+
     public User(String fName, String lName, int age) {
         this.fName = fName;
         this.lName = lName;
@@ -46,7 +45,7 @@ public class User {
     public void setLName(String name) {
         this.lName = name;
     }
-    
+
     /**
      * Method setAge sets age
      *
@@ -55,8 +54,8 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-    
-    public void setUserId(int id){
+
+    public void setUserId(int id) {
         this.userID = id;
     }
 
@@ -77,7 +76,7 @@ public class User {
     public String getLName() {
         return this.lName;
     }
-    
+
     /**
      * Method getAge gets user's age
      *
@@ -86,9 +85,9 @@ public class User {
     public int getAge() {
         return this.age;
     }
-    
-    public int getUserID(){
+
+    public int getUserID() {
         return this.userID;
     }
-    
+
 }
