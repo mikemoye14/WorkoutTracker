@@ -36,17 +36,17 @@ public class InitDatabase {
             System.out.println("Connected.");
             System.out.println("Delecting Tables...");
             
-            query = "DROP TABLE HeartRate\n";
+            query = "DROP TABLE HeartRates\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE Distance\n";
+            query = "DROP TABLE Distances\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE Speed\n";
+            query = "DROP TABLE Speeds\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
@@ -56,7 +56,7 @@ public class InitDatabase {
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE xUser\n";
+            query = "DROP TABLE xUsers\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
@@ -67,7 +67,7 @@ public class InitDatabase {
             System.out.println("DB connection closed.");
                     
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+           //Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             
             try {
@@ -85,7 +85,7 @@ public class InitDatabase {
                 
                 //create user table
                 
-                query = "CREATE TABLE xUser\n" +
+                query = "CREATE TABLE xUsers\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT NOT NULL GENERATED ALWAYS AS IDENTITY,\n" +
@@ -93,7 +93,7 @@ public class InitDatabase {
                         "    lName VARCHAR(50) NOT NULL,\n" +
                         "    age int NOT NULL,    \n" +
                         "\n" +
-                        "    CONSTRAINT pk_User PRIMARY KEY (UserId)\n" +
+                        "    CONSTRAINT pk_Users PRIMARY KEY (UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -103,19 +103,17 @@ public class InitDatabase {
                 
                 //create heartRate table
                 
-                query = "CREATE TABLE HeartRate\n" +
+                query = "CREATE TABLE HeartRates\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
                         "    hrDate DATE,\n" +
                         "    hrTime TIME,\n" +
-                        "    heartRate INT,    \n" +
-                        "    maxHeartRate INT,\n" +
-                        "    targetHeartRate INT,\n" +
+                        "    heartRate INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_HeartRate PRIMARY KEY (UserId, hrDate, hrTime),\n" +
+                        "    CONSTRAINT pk_HeartRates PRIMARY KEY (UserId, hrDate, hrTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -125,7 +123,7 @@ public class InitDatabase {
                 
                 //create distance table
                 
-                query = "CREATE TABLE Distance\n" +
+                query = "CREATE TABLE Distances\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
@@ -133,9 +131,9 @@ public class InitDatabase {
                         "    distanceTime TIME,\n" +
                         "    distance INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_Distance PRIMARY KEY (UserId, distanceDate, distanceTime),\n" +
+                        "    CONSTRAINT pk_Distances PRIMARY KEY (UserId, distanceDate, distanceTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -145,7 +143,7 @@ public class InitDatabase {
                 
                 //create speed table
                 
-                query = "CREATE TABLE Speed\n" +
+                query = "CREATE TABLE Speeds\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
@@ -153,9 +151,9 @@ public class InitDatabase {
                         "    speedTime TIME,\n" +
                         "    distance INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_Speed PRIMARY KEY (UserId, speedDate, speedTime),\n" +
+                        "    CONSTRAINT pk_Speeds PRIMARY KEY (UserId, speedDate, speedTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -175,7 +173,7 @@ public class InitDatabase {
                         "    \n" +
                         "    CONSTRAINT pk_Calories PRIMARY KEY (UserId, caloriesDate, caloriestime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -197,7 +195,7 @@ public class InitDatabase {
     }
         
     public static void initDB(){
-        try {
+         try {
             
             String query;
             Statement stmt;
@@ -209,17 +207,17 @@ public class InitDatabase {
             System.out.println("Connected.");
             System.out.println("Delecting Tables...");
             
-            query = "DROP TABLE HeartRate\n";
+            query = "DROP TABLE HeartRates\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE Distance\n";
+            query = "DROP TABLE Distances\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE Speed\n";
+            query = "DROP TABLE Speeds\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
@@ -229,7 +227,7 @@ public class InitDatabase {
             stmt.execute(query);
             stmt.close();
 
-            query = "DROP TABLE xUser\n";
+            query = "DROP TABLE xUsers\n";
             stmt = con.createStatement();
             stmt.execute(query);
             stmt.close();
@@ -240,7 +238,7 @@ public class InitDatabase {
             System.out.println("DB connection closed.");
                     
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+           //Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             
             try {
@@ -258,7 +256,7 @@ public class InitDatabase {
                 
                 //create user table
                 
-                query = "CREATE TABLE xUser\n" +
+                query = "CREATE TABLE xUsers\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT NOT NULL GENERATED ALWAYS AS IDENTITY,\n" +
@@ -266,7 +264,7 @@ public class InitDatabase {
                         "    lName VARCHAR(50) NOT NULL,\n" +
                         "    age int NOT NULL,    \n" +
                         "\n" +
-                        "    CONSTRAINT pk_User PRIMARY KEY (UserId)\n" +
+                        "    CONSTRAINT pk_Users PRIMARY KEY (UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -276,19 +274,17 @@ public class InitDatabase {
                 
                 //create heartRate table
                 
-                query = "CREATE TABLE HeartRate\n" +
+                query = "CREATE TABLE HeartRates\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
                         "    hrDate DATE,\n" +
                         "    hrTime TIME,\n" +
-                        "    heartRate INT,    \n" +
-                        "    maxHeartRate INT,\n" +
-                        "    targetHeartRate INT,\n" +
+                        "    heartRate INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_HeartRate PRIMARY KEY (UserId, hrDate, hrTime),\n" +
+                        "    CONSTRAINT pk_HeartRates PRIMARY KEY (UserId, hrDate, hrTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -298,7 +294,7 @@ public class InitDatabase {
                 
                 //create distance table
                 
-                query = "CREATE TABLE Distance\n" +
+                query = "CREATE TABLE Distances\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
@@ -306,9 +302,9 @@ public class InitDatabase {
                         "    distanceTime TIME,\n" +
                         "    distance INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_Distance PRIMARY KEY (UserId, distanceDate, distanceTime),\n" +
+                        "    CONSTRAINT pk_Distances PRIMARY KEY (UserId, distanceDate, distanceTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -318,7 +314,7 @@ public class InitDatabase {
                 
                 //create speed table
                 
-                query = "CREATE TABLE Speed\n" +
+                query = "CREATE TABLE Speeds\n" +
                         "(\n" +
                         "\n" +
                         "    UserId INT,\n" +
@@ -326,9 +322,9 @@ public class InitDatabase {
                         "    speedTime TIME,\n" +
                         "    distance INT,\n" +
                         "    \n" +
-                        "    CONSTRAINT pk_Speed PRIMARY KEY (UserId, speedDate, speedTime),\n" +
+                        "    CONSTRAINT pk_Speeds PRIMARY KEY (UserId, speedDate, speedTime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -348,7 +344,7 @@ public class InitDatabase {
                         "    \n" +
                         "    CONSTRAINT pk_Calories PRIMARY KEY (UserId, caloriesDate, caloriestime),\n" +
                         "\n" +
-                        "    FOREIGN KEY (UserId) REFERENCES xUser(UserId)\n" +
+                        "    FOREIGN KEY (UserId) REFERENCES xUsers(UserId)\n" +
                         "\n" +
                         ")";
                         
@@ -357,9 +353,10 @@ public class InitDatabase {
                 stmt.close();
                 
                 System.out.println("Tables Created.");
-                System.out.println("Closing DB Connection.");
+
                 con.close();
-                System.out.println("Connection closed.");                
+                
+                System.out.println("Closing DB Connection.");
 
                 } catch (SQLException ex) {
                 Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,4 +364,5 @@ public class InitDatabase {
             }
         }
     }
+
 }

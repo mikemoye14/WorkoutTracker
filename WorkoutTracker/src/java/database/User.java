@@ -15,6 +15,8 @@ public class User {
     private String lName = "";
     private int age = 0;
     
+    private int userID = 0;
+    
     /**
      * Default Constructor
      */
@@ -53,6 +55,10 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+    
+    public void setUserId(int id){
+        this.userID = id;
+    }
 
     /**
      * Method getFName gets first name
@@ -79,6 +85,10 @@ public class User {
      */
     public int getAge() {
         return this.age;
+    }
+    
+    public int getUserID(){
+        return this.userID;
     }
     
 }
