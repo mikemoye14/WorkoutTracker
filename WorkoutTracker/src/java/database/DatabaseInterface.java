@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,14 +33,29 @@ public class DatabaseInterface {
         DatabaseInterface di = new DatabaseInterface(new User("Mike", "Mo", 25));
 
         di.createNewUser();
-
-        di.updateHeartRate(user, 209, "04/23/2014", "14:19");
-
-        di.updateDistance(user, "04/23/2014", "14:19", 100);
-
+        
+        di.updateHeartRate(user, "04/23/2014", "14:19", 209);
+        di.updateDistance(user, "04/23/2014", "14:19", 200);
         di.updateSpeed(user, "04/23/2014", "14:19", 100);
-
-        di.updateCalories(user, "04/23/2014", "14:19", 100);
+        di.updateCalories(user, "04/23/2014", "14:19", 800);
+        
+        ArrayList<String> hrData;
+        ArrayList<String> distanceData;
+        ArrayList<String> speedData;
+        ArrayList<String> calorieData;
+        
+        hrData = di.getHeartRates(user);
+        distanceData = di.getDistances(user);
+        speedData = di.getSpeeds(user);
+        calorieData = di.getCalories(user);
+        
+        System.out.println("Date: " + hrData.get(1));
+        System.out.println("Time: " + hrData.get(2));
+        
+        System.out.println("HeartRate: " + hrData.get(0));
+        System.out.println("Distance: " + distanceData.get(0));
+        System.out.println("Speed: " + speedData.get(0));
+        System.out.println("Calories: " + calorieData.get(0));
 
         //System.out.println(System.getProperty("java.home"));
     }
@@ -106,6 +122,7 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
+            
             con.close();
 
         } catch (SQLException ex) {
@@ -114,7 +131,7 @@ public class DatabaseInterface {
 
     }
 
-    private void updateHeartRate(User user, int rate, String date, String time) {
+    private void updateHeartRate(User user, String date, String time, int rate) {
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -142,6 +159,9 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
+            
+            con.close();
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,6 +196,9 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
+            
+            con.close();
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
@@ -210,7 +233,9 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-
+            
+            con.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -244,37 +269,152 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
+            
+            con.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private float getHeartRate(User user) {
+    private ArrayList<String> getHeartRates(User user) {
+        
+        ArrayList<String> heartRateInfo = new ArrayList();
+        
+        try {
 
-        float heartRate = 0;
+            con = DriverManager.getConnection(url, userName, pwd);
 
-        return heartRate;
+            Statement stmt;
+            String query =  "SELECT * FROM HeartRates\n" +
+                            "WHERE UserId = " + user.getUserID();
+
+            stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                heartRateInfo.add(rs.getString("heartRate"));
+                heartRateInfo.add(rs.getString("hrDate"));
+                heartRateInfo.add(rs.getString("hrTime"));
+
+            }
+
+            stmt.close();
+            
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return heartRateInfo;
     }
 
-    private float getDistance(User user) {
+    private ArrayList<String> getDistances(User user) {
 
-        float distance = 0;
+        ArrayList<String> distanceInfo = new ArrayList();
+        
+        try {
 
-        return distance;
+            con = DriverManager.getConnection(url, userName, pwd);
+
+            Statement stmt;
+            String query =  "SELECT * FROM Distances\n" +
+                            "WHERE UserId = " + user.getUserID();
+
+            stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                distanceInfo.add(rs.getString("distance"));
+                distanceInfo.add(rs.getString("distanceDate"));
+                distanceInfo.add(rs.getString("distanceTime"));
+
+            }
+
+            stmt.close();
+            
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return distanceInfo;
     }
 
-    private float getSpeed(User user) {
+    private ArrayList<String> getSpeeds(User user) {
 
-        float speed = 0;
+        ArrayList<String> speedInfo = new ArrayList();
+        
+        try {
 
-        return speed;
+            con = DriverManager.getConnection(url, userName, pwd);
+
+            Statement stmt;
+            String query =  "SELECT * FROM Speeds\n" +
+                            "WHERE UserId = " + user.getUserID();
+
+            stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                speedInfo.add(rs.getString("speed"));
+                speedInfo.add(rs.getString("speedDate"));
+                speedInfo.add(rs.getString("speedTime"));
+
+            }
+
+            stmt.close();
+            
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return speedInfo;
     }
 
-    private float getCalories(User user) {
-        float calories = 0;
+    private ArrayList<String> getCalories(User user) {
+        
+        ArrayList<String> calorieInfo = new ArrayList();
+        
+        try {
 
-        return calories;
+            con = DriverManager.getConnection(url, userName, pwd);
+
+            Statement stmt;
+            String query =  "SELECT * FROM Calories\n" +
+                            "WHERE UserId = " + user.getUserID();
+
+            stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                calorieInfo.add(rs.getString("caloriesBurned"));
+                calorieInfo.add(rs.getString("caloriesDate"));
+                calorieInfo.add(rs.getString("caloriesTime"));
+
+            }
+
+            stmt.close();
+            
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return calorieInfo;
     }
 
 }
