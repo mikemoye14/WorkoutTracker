@@ -357,10 +357,9 @@ public class InitDatabase {
                 stmt.close();
                 
                 System.out.println("Tables Created.");
-
-                con.close();
-                
                 System.out.println("Closing DB Connection.");
+                con.close();
+                System.out.println("Connection closed.");                
 
                 } catch (SQLException ex) {
                 Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
