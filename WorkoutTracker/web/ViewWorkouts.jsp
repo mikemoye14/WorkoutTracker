@@ -12,6 +12,13 @@
         <title>View Workout</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <table style="margin: auto; border: 2px solid black;">
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
     </body>
 </html>
