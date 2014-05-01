@@ -1,14 +1,1 @@
-Wed Apr 30 10:30:46 EDT 2014 : Apache Derby Network Server - 10.8.3.0 - (1405108) started and ready to accept connections on port 1527
-----------------------------------------------------------------
-Wed Apr 30 10:30:47 EDT 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108): instance a816c00e-0145-b30b-8111-ffffdfe6a2ac 
-on database directory C:\Users\dizoo548\Java Development\Netbeans\WorkoutTracker\WorkoutTracker\src\db\WorkoutTracker  with class loader sun.misc.Launcher$AppClassLoader@749cd006 
-Loaded from file:/C:/Program%20Files/Java/jdk1.7.0_51/db/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_51-b13
-user.dir=C:\Program Files\Java\jdk1.7.0_51\db
-os.name=Windows 7
-os.arch=amd64
-os.version=6.1
-derby.system.home=C:\Users\dizoo548\Java Development\Netbeans\WorkoutTracker\WorkoutTracker\src\db
-Database Class Loader started - derby.database.classpath=''
+Thu May 01 11:00:35 EDT 2014 : Apache Derby Network Server - 10.8.3.0 - (1405108) started and ready to accept connections on port 1527
