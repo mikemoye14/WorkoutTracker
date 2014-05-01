@@ -7,13 +7,13 @@
 <%@page import="objs.User" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    
-    User xUser = (User)request.getAttribute("user");
-    
-    User user = new User("Mike", "M", 25);
-    
+
+    User xUser = (User) request.getAttribute("user");
+
+    User user = new User("Mike", "M", 18);
+
     int age = user.getAge();
-    
+
 %>
 
 <!DOCTYPE html>
@@ -51,7 +51,7 @@
                 width: 33%;
                 float: left;
                 position: relative;
-                
+
             }
             #backButton{
                 background-image:url("./resources/images/backButton.png");
@@ -68,25 +68,117 @@
         </style>
         <script src="./resources/js/jquery-latest.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                
-                var age = <%= age %>; //get age
+            $(document).ready(function() {
+
+                var age = <%= age%>; //get age
                 var mhr = 220 - age; //calc target heart rate
-                var thr = parseInt(mhr*.5); //calc max heart rate
-                
+                var thr = parseInt(mhr * .5); //calc max heart rate
+
+                var getToRestHeartRate;
+                var getToTarget;
+                var hype;
+                var sus;
+                var coolDown;
+
+                var counter = 0;
+                var interval = 50;
+
+
                 $('#thr').html(thr);
                 $('#mhr').html(mhr);
-                
-                $('#startButton').click(function(){
-                    alert('En Construcción!');
+
+                $('#startButton').click(function() {
+                    //alert('En Construcción!');
+
+                    start();
                 });
+
+                $('#stopButton').click(function() {
+                    clearInterval(getToRestHeartRate);
+                    clearInterval(getToTarget);
+                    clearInterval(hype);
+                    clearInterval(sus);
+                    interval = 50;
+                    stopWorkout();
+                });
+
+                function start() {
+                    getToRestHeartRate = setInterval(function() {
+
+                        if (counter === 40) {
+
+                            $('#heart').attr('src', './resources/images/halfHeart.png');
+                        }
+
+                        if (counter >= 80) {
+                            interval = 100;
+                            clearInterval(getToRestHeartRate);
+                            doThr();
+                        }
+                        $('#bpm').html(counter + 1);
+                        counter++;
+                    }, interval);
+                }
+
+                function doThr() {
+                    getToTarget = setInterval(function() {
+                        if (counter >= thr) {
+                            interval = 250;
+                            clearInterval(getToTarget);
+                            $('#heart').attr('src', './resources/images/fullHeart.png');
+                            getHype();
+                        }
+                        $('#bpm').html(counter + 1);
+                        counter = counter + 2;
+                    }, interval);
+                }
+
+                function getHype() {
+                    hype = setInterval(function() {
+                        if (counter >= (mhr * .75)) {
+                            clearInterval(hype);
+                            sustain();
+                        }
+                        $('#bpm').html(counter + 1);
+                        counter++;
+                    }, interval);
+                }
+
+                function sustain() {
+                    sus = setInterval(function() {
+
+                        if (counter >= (mhr * .75)) {
+                            $('#bpm').html(counter + 1);
+                            counter--;
+                        } else {
+                            $('#bpm').html(counter - 1);
+                            counter++;
+                        }
+
+                    }, interval);
+                }
+
+                function stopWorkout() {
+                    coolDown = setInterval(function() {
+
+                        if (counter > -1) {
+                            $('#bpm').html(counter - 1);
+                            counter = counter--;
+                        }
+                        if (counter === 0) {
+                            clearInterval(coolDown);
+                        }
+
+                    }, interval);
+                }
+
             });
         </script>
-        
+
         <title>View Workout</title>
     </head>
     <body>
-        
+
         <table style="margin: auto; border: 5px solid black; margin-top: 50px; background-color: white; border-radius: 10px; padding-bottom: 0px;">
             <tr>
                 <td></td>
@@ -106,8 +198,8 @@
                         </table>
                         <table style="margin: auto; height: 50px; margin-top: 20px; background-color: white;">
                             <tr>
-                                <td id="bpm" style="font-size: 36pt; font-weight: bolder;">
-                                   0 
+                                <td id="bpm" style="font-size: 30pt; font-weight: bolder;">
+                                    0 
                                 </td>
                                 <td>
                                 </td>
@@ -115,7 +207,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <img src="./resources/images/emptyHeart.png" alt="heart" />
+                                                <img id="heart" src="./resources/images/emptyHeart.png" alt="heart" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -127,7 +219,10 @@
                                 </td>
                             </tr>
                         </table>
-                        <table style="margin: auto; margin-top: 25px; height: 50px; background-color: white;">
+                        <table style="margin: auto; margin-top: 20px; height: 50px; background-color: white;">
+                            <tr>
+                                <td colspan="3">Target Range:</td>
+                            </tr>
                             <tr>
                                 <td id="thr" style="font-size: 24pt; font-weight: bolder;">0</td>
                                 <td style="font-size: 24pt; font-weight: bolder;"> - </td>
