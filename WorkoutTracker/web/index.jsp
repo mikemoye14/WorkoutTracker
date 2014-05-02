@@ -191,8 +191,10 @@
                 </td>
             </tr>
             <tr  id="userRow" style="display: none;">
-                <td id="users" colspan="3" style="padding-bottom: 10px; width: 250px;">
-
+                <td id="users" colspan="3" style=" text-align: center; padding-bottom: 10px; width: 250px;">
+                    <h2 style="color: #5F74E2;">LOGIN</h2>
+                    <span style="color: red; text-align: left;">Click your user account.</span>
+                    <br />
                 </td>
             </tr>
             <tr  id="newUser" style="display: none;">
@@ -200,7 +202,7 @@
                     <form action="">
                         <table style="margin: auto;">
                             <tr>
-                                <td colspan="2" style="text-align: center; color: #5F74E2;">
+                                <td colspan="2" style="text-align: center; color: #5F74E2;">                                    
                                     <h2>New User</h2>
                                 </td>
                             </tr>
