@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewWorkouts
+    Document   : heartRateTracker
     Created on : Apr 30, 2014, 10:44:47 AM
-    Author     : Scott
+    Author     : Mike Moye
 --%>
 
 <%@page import="objs.User" contentType="text/html" pageEncoding="UTF-8"%>
@@ -79,6 +79,7 @@
                 var hype;
                 var sus;
                 var coolDown;
+                var w, x, y, z;
 
                 var counter = 0;
                 var interval = 50;
@@ -94,10 +95,22 @@
                 });
 
                 $('#stopButton').click(function() {
-                    clearInterval(getToRestHeartRate);
-                    clearInterval(getToTarget);
-                    clearInterval(hype);
-                    clearInterval(sus);
+                    if (w) {
+                        clearInterval(getToRestHeartRate);
+                        w = false;
+                    }
+                    if (x){
+                        clearInterval(getToTarget);
+                        x = false;
+                    }
+                    if (y) {
+                        clearInterval(hype);
+                        y = false;
+                    }
+                    if (z) {
+                        clearInterval(sus);
+                        z = false;
+                    }
                     interval = 50;
                     stopWorkout();
                 });
@@ -105,14 +118,16 @@
                 function start() {
                     getToRestHeartRate = setInterval(function() {
 
-                        if (counter === 40) {
+                        w = true;
 
+                        if (counter === 40) {
                             $('#heart').attr('src', './resources/images/halfHeart.png');
                         }
 
                         if (counter >= 80) {
                             interval = 100;
                             clearInterval(getToRestHeartRate);
+                            w = false;
                             doThr();
                         }
                         $('#bpm').html(counter + 1);
@@ -122,9 +137,11 @@
 
                 function doThr() {
                     getToTarget = setInterval(function() {
+                        x = true;
                         if (counter >= thr) {
                             interval = 250;
                             clearInterval(getToTarget);
+                            x = false;
                             $('#heart').attr('src', './resources/images/fullHeart.png');
                             getHype();
                         }
@@ -135,8 +152,10 @@
 
                 function getHype() {
                     hype = setInterval(function() {
+                        y = true;
                         if (counter >= (mhr * .75)) {
                             clearInterval(hype);
+                            y = false;
                             sustain();
                         }
                         $('#bpm').html(counter + 1);
@@ -146,7 +165,7 @@
 
                 function sustain() {
                     sus = setInterval(function() {
-
+                        z = true;
                         if (counter >= (mhr * .75)) {
                             $('#bpm').html(counter + 1);
                             counter--;
@@ -160,10 +179,19 @@
 
                 function stopWorkout() {
                     coolDown = setInterval(function() {
-
+                        
                         if (counter > -1) {
                             $('#bpm').html(counter - 1);
-                            counter = counter--;
+                            counter--;
+                        }
+                        if (counter <= 20) {
+                            $('#heart').attr('src', './resources/images/emptyHeart.png');
+                        }
+                        if (counter >= 40) {
+                            $('#heart').attr('src', './resources/images/halfHeart.png');
+                        }
+                        if (counter >= thr) {
+                            $('#heart').attr('src', './resources/images/fullHeart.png');
                         }
                         if (counter === 0) {
                             clearInterval(coolDown);
@@ -175,7 +203,7 @@
             });
         </script>
 
-        <title>View Workout</title>
+        <title>Welcome to the Heart Rate Tracker</title>
     </head>
     <body>
 
@@ -243,9 +271,9 @@
             </tr>
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">
                 <td colspan="3" style="background-color: black; margin-bottom: 0px; padding-bottom: 0px; text-align: center;">
-                    <div id="menuButton"></div>
-                    <div id="homeButton"></div>
-                    <div id="backButton"></div>
+                    <div id="menuButton" onclick="javascript: alert('Settings Menu Coming Soon!');"></div>
+                    <div id="homeButton" onclick="javascript: window.location.href = './index.html';"></div>
+                    <div id="backButton" onclick="javascript: history.go(-1);"></div>
                 </td>
             </tr>
         </table>
