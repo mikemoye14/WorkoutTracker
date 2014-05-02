@@ -79,18 +79,20 @@
                 var hype;
                 var sus;
                 var coolDown;
+                var stop;
                 var w, x, y, z;
 
                 var counter = 0;
                 var interval = 50;
 
-
                 $('#thr').html(thr);
                 $('#mhr').html(mhr);
 
                 $('#startButton').click(function() {
-                    //alert('En Construcción!');
-
+                    if (stop) {
+                        clearInterval(coolDown);
+                        stop = false;
+                    }
                     start();
                 });
 
@@ -99,7 +101,7 @@
                         clearInterval(getToRestHeartRate);
                         w = false;
                     }
-                    if (x){
+                    if (x) {
                         clearInterval(getToTarget);
                         x = false;
                     }
@@ -117,13 +119,10 @@
 
                 function start() {
                     getToRestHeartRate = setInterval(function() {
-
                         w = true;
-
                         if (counter === 40) {
                             $('#heart').attr('src', './resources/images/halfHeart.png');
                         }
-
                         if (counter >= 80) {
                             interval = 100;
                             clearInterval(getToRestHeartRate);
@@ -173,13 +172,12 @@
                             $('#bpm').html(counter - 1);
                             counter++;
                         }
-
                     }, interval);
                 }
 
                 function stopWorkout() {
                     coolDown = setInterval(function() {
-                        
+                        stop = true;
                         if (counter > -1) {
                             $('#bpm').html(counter - 1);
                             counter--;
@@ -195,11 +193,11 @@
                         }
                         if (counter === 0) {
                             clearInterval(coolDown);
+                            stop false;
                         }
-
                     }, interval);
                 }
-
+                
             });
         </script>
 
