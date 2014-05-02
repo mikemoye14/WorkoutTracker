@@ -54,20 +54,20 @@
         </style>
     </head>
     <body>
-        <table style="margin: auto; border: 5px solid black; margin-top: 50px; background-color: white; border-radius: 10px; padding-bottom: 0px;">
+        <table style="margin: auto; width: 320px; height: 480px; border: 5px solid black; background-color: white; border-radius: 10px; padding-bottom: 0px;">
             <tr>
                 <td></td>
-                <td style="text-align: center; background-color: white; padding-top: 20px; padding-bottom: 10px;">
+                <td style="text-align: center; background-color: white; padding-bottom: 10px;">
                     <img src="./resources/images/bike.png" alt="bike" />
                 </td>
                 <td></td>                
             </tr>
             <tr>
                 <td colspan="3" style=" height: 250px; vertical-align: middle;">
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px; border-top: 2px solid black;" onclick="javascript: window.location.href='./heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">HEART RATE</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px;">DISTANCE</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px;">SPEED</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px; border-bottom: 2px solid black;">CALORIES</div>
+                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px; border-top: 2px solid black;" onclick="javascript: window.location.href='./heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">HEART RATE</div>
+                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;">DISTANCE</div>
+                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;">SPEED</div>
+                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;border-bottom: 2px solid black;">CALORIES</div>
                 </td>
             </tr>
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">

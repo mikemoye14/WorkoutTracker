@@ -37,15 +37,15 @@
             for (User used : users) {
                 userTable
                         += "<tr onmouseover=\"javascript: "
-                                + "     $(this).css(\\'cursor\\', \\'pointer\\'); "
-                                + "     $(this).css(\\'color\\', \\'white\\'); "
-                                + "     $(this).css(\\'background-color\\', \\'#5F74E2\\');\" "
-                                + " onmouseout=\"javascript: $(this).css(\\'cursor\\', \\'default\\');"
-                                + "     $(this).css(\\'background-color\\', \\'white\\');"
-                                + "     $(this).css(\\'color\\', \\'black\\');>\">"
-                            + "<td style=\"text-align: center;\">" + String.valueOf(used.getUserID()) + "</td>"
-                            + "<td style=\"text-align: left;\">" + used.getFName() + " " + used.getLName() + "</td>"
-                            + "<td style=\"text-align: center;\">" + String.valueOf(used.getAge()) + "</td>"
+                        + "     $(this).css(\\'cursor\\', \\'pointer\\'); "
+                        + "     $(this).css(\\'color\\', \\'white\\'); "
+                        + "     $(this).css(\\'background-color\\', \\'#5F74E2\\');\" "
+                        + " onmouseout=\"javascript: $(this).css(\\'cursor\\', \\'default\\');"
+                        + "     $(this).css(\\'background-color\\', \\'white\\');"
+                        + "     $(this).css(\\'color\\', \\'black\\');>\">"
+                        + "<td style=\"text-align: center;\">" + String.valueOf(used.getUserID()) + "</td>"
+                        + "<td style=\"text-align: left;\">" + used.getFName() + " " + used.getLName() + "</td>"
+                        + "<td style=\"text-align: center;\">" + String.valueOf(used.getAge()) + "</td>"
                         + " </tr>";
             }
         }
@@ -65,6 +65,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="./resources/js/jquery-latest.js"></script>
+        <script type="text/javascript">
+            function hideStart() {
+                $('.start').hide();
+                $('.settings').show();
+            }
+            function showUsers() {
+                $('.settings').hide();
+                $('#users').append('<%= userTable%>');
+                $('#userRow').show();
+            }
+            function showNewUser() {
+                $('.settings').hide();
+                $('#newUser').show();
+            }
+
+        </script>
 
         <style type="text/css">
             #menuButton{
@@ -108,20 +124,7 @@
     </head>
     <body>
 
-        <script type="text/javascript">
-            function hideStart() {
-                $('.start').hide();
-                $('.settings').show();
-            }
-            function showUsers() {
-                $('.settings').hide();
-                $('#users').append('<%= userTable%>');
-                $('#userRow').show();
-            }
-
-        </script>
-
-        <table id="beginTable" style="margin: auto; border: 5px solid black; margin-top: 50px; background-color: white; border-radius: 10px; padding-bottom: 0px;">
+        <table id="beginTable" style="margin: auto; width: 320px; height: 480px; border: 5px solid black; background-color: white; border-radius: 10px; padding-bottom: 0px;">
             <tr>
                 <td></td>
                 <td style="text-align: center; background-color: white; padding-top: 20px; padding-bottom: 10px;">
@@ -130,7 +133,7 @@
                 <td></td>                
             </tr>
             <tr class="start">
-                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px; ">
+                <td colspan="3" style="padding-bottom: 25px;">
                     <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: window.location.href = './mainMenu.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer');
                             $(this).css('color', 'white');
                             $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
@@ -158,16 +161,43 @@
             </tr>
             <tr style="display: none;" class="settings">
                 <td colspan="3" style="padding-bottom: 25px; padding-top: 25px;">
-                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript:" onmouseover="javascript: $(this).css('cursor', 'pointer');
+                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: showNewUser();" onmouseover="javascript: $(this).css('cursor', 'pointer');
                             $(this).css('color', 'white');
                             $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
                                     $(this).css('background-color', 'white');
                                     $(this).css('color', 'black');">NEW USER</div>
                 </td>
             </tr>
-            <tr  id="userRow" style="display: none; ">
+            <tr  id="userRow" style="display: none;">
                 <td id="users" colspan="3" style="padding-bottom: 25px; padding-top: 25px; width: 250px;">
-                    
+
+                </td>
+            </tr>
+            <tr  id="newUser" style="display: none;">
+                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px; width: 250px;">
+                    <form action="">
+                        <table style="margin: auto;">
+                            <tr>
+                                <td colspan="2" style="text-align: center; color: #5F74E2;">
+                                    <h2>New User</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right;">First Name:</th><th style="text-align: center;"><input type="text" name="fName" style="border: 1px solid #5F74E2;" /></th>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right;">Last Name:</th><th style="text-align: center;"><input type="text" name="lName" style="border: 1px solid #5F74E2;" /></th>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right;">Age:</th><th style="text-align: center;"><input type="text" name="age" style="border: 1px solid #5F74E2;" /></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center; color: #5F74E2; padding: 20px;">
+                                    <input type="submit" value="Add New User" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </td>
             </tr>
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">
