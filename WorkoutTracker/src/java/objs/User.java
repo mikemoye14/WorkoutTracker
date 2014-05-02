@@ -27,6 +27,13 @@ public class User {
         this.lName = lName;
         this.age = age;
     }
+    
+    public User(int id, String fName, String lName, int age) {
+        this.fName = fName;
+        this.lName = lName;
+        this.age = age;
+        this.userID = id;
+    }
 
     /**
      * Method setFName sets first name

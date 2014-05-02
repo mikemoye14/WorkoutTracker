@@ -11,8 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * DatabaseInterface.java 
- * Purpose: interface between app and DB
+ * DatabaseInterface.java Purpose: interface between app and DB
  *
  * @author Mike Moye <mikemoye14@gamil.com>
  * @version 1.0 29 April 2014
@@ -31,34 +30,170 @@ public class DatabaseInterface {
 
     public static void main(String[] args) {
 
-        DatabaseInterface di = new DatabaseInterface(new User("Mike", "Mo", 25));
-
-        di.createNewUser();
-        
-        di.updateHeartRate(user, "04/23/2014", "14:19", 209);
-        di.updateDistance(user, "04/23/2014", "14:19", 200);
-        di.updateSpeed(user, "04/23/2014", "14:19", 100);
-        di.updateCalories(user, "04/23/2014", "14:19", 800);
-        
+        DatabaseInterface di;
         ArrayList<String> hrData;
         ArrayList<String> distanceData;
         ArrayList<String> speedData;
         ArrayList<String> calorieData;
         
+        di = new DatabaseInterface(new User("Mike", "Mo", 25));
+
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Bryan ", "Fury", 38));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Asuka ", "Kazama", 18));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Eddy ", "Gordo", 46));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Steve ", "Fox", 26));
+        di.createNewUser();
+
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Nina ", "Williams", 28));
+        di.createNewUser();
+
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+
         hrData = di.getHeartRates(user);
         distanceData = di.getDistances(user);
         speedData = di.getSpeeds(user);
         calorieData = di.getCalories(user);
-        
+
         System.out.println("Date: " + hrData.get(1));
         System.out.println("Time: " + hrData.get(2));
-        
+
         System.out.println("HeartRate: " + hrData.get(0));
         System.out.println("Distance: " + distanceData.get(0));
         System.out.println("Speed: " + speedData.get(0));
         System.out.println("Calories: " + calorieData.get(0));
 
         //System.out.println(System.getProperty("java.home"));
+        
+        ArrayList<User> users;
+        
+        users = di.getUsers();
+        System.out.println("Users:");
+        
+        for (User user1 : users) {
+            System.out.println(user1.getFName() + " " + user1.getLName() + " " + user1.getAge());
+        }
+
+    }
+    
+    public static void dummyData(){
+        
+        DatabaseInterface di;
+        ArrayList<String> hrData;
+        ArrayList<String> distanceData;
+        ArrayList<String> speedData;
+        ArrayList<String> calorieData;
+        
+        di = new DatabaseInterface(new User("Mike", "Mo", 25));
+
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Bryan ", "Fury", 38));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Asuka ", "Kazama", 18));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Eddy ", "Gordo", 46));
+        di.createNewUser();
+        
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Steve ", "Fox", 26));
+        di.createNewUser();
+
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+        
+        di = new DatabaseInterface(new User("Nina ", "Williams", 28));
+        di.createNewUser();
+
+        di.updateHeartRate(user, "04/20/2014", "04:20", 209);
+        di.updateDistance(user, "04/20/2014", "04:20", 200);
+        di.updateSpeed(user, "04/20/2014", "04:20", 100);
+        di.updateCalories(user, "04/20/2014", "04:20", 800);
+
+        hrData = di.getHeartRates(user);
+        distanceData = di.getDistances(user);
+        speedData = di.getSpeeds(user);
+        calorieData = di.getCalories(user);
+
+        System.out.println("Date: " + hrData.get(1));
+        System.out.println("Time: " + hrData.get(2));
+
+        System.out.println("HeartRate: " + hrData.get(0));
+        System.out.println("Distance: " + distanceData.get(0));
+        System.out.println("Speed: " + speedData.get(0));
+        System.out.println("Calories: " + calorieData.get(0));
+        System.out.println("");
+
+        //System.out.println(System.getProperty("java.home"));
+        
+        ArrayList<User> users;
+        
+        users = di.getUsers();
+        
+        System.out.println("");
+        System.out.println("Users:");
+        
+        for (User user1 : users) {
+            System.out.println(user1.getFName() + " " + user1.getLName() + " " + user1.getAge());
+        }
     }
 
     public DatabaseInterface(User u) {
@@ -66,12 +201,12 @@ public class DatabaseInterface {
         user = u;
 
     }
-    
+
     public DatabaseInterface() {
 
     }
 
-    private void createNewUser() {
+    public void createNewUser() {
 
         try {
 
@@ -127,7 +262,7 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {
@@ -136,10 +271,10 @@ public class DatabaseInterface {
 
     }
 
-    private ArrayList<String> getUsers() {
-        
-        ArrayList<String> users = new ArrayList();
-        
+    public ArrayList<User> getUsers() {
+
+        ArrayList<User> users = new ArrayList();
+
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -155,27 +290,24 @@ public class DatabaseInterface {
 
             while (rs.next()) {
 
-                users.add(rs.getString("fName"));
-                users.add(rs.getString("lName"));
-                users.add(rs.getString("Age"));
+                users.add(new User(Integer.parseInt(rs.getString(1)), rs.getString("fName"), rs.getString("lName"), Integer.parseInt(rs.getString("Age"))));
 
             }
 
             stmt.close();
-            
+
             con.close();
-            
-            System.out.print(users.get(0));
+
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return users;
 
     }
-    
-    private void updateHeartRate(User user, String date, String time, int rate) {
+
+    public void updateHeartRate(User user, String date, String time, int rate) {
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -203,16 +335,15 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-            
+
             con.close();
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void updateDistance(User user, String date, String time, int distance) {
+    public void updateDistance(User user, String date, String time, int distance) {
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -240,16 +371,15 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-            
+
             con.close();
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void updateSpeed(User user, String date, String time, int speed) {
+    public void updateSpeed(User user, String date, String time, int speed) {
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -277,15 +407,15 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-            
+
             con.close();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void updateCalories(User user, String date, String time, int calories) {
+    public void updateCalories(User user, String date, String time, int calories) {
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
@@ -313,7 +443,7 @@ public class DatabaseInterface {
             stmt.executeUpdate(query);
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {
@@ -321,17 +451,17 @@ public class DatabaseInterface {
         }
     }
 
-    private ArrayList<String> getHeartRates(User user) {
-        
+    public ArrayList<String> getHeartRates(User user) {
+
         ArrayList<String> heartRateInfo = new ArrayList();
-        
+
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
-            String query =  "SELECT * FROM HeartRates\n" +
-                            "WHERE UserId = " + user.getUserID();
+            String query = "SELECT * FROM HeartRates\n"
+                    + "WHERE UserId = " + user.getUserID();
 
             stmt = con.createStatement();
 
@@ -346,7 +476,7 @@ public class DatabaseInterface {
             }
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {
@@ -356,17 +486,17 @@ public class DatabaseInterface {
         return heartRateInfo;
     }
 
-    private ArrayList<String> getDistances(User user) {
+    public ArrayList<String> getDistances(User user) {
 
         ArrayList<String> distanceInfo = new ArrayList();
-        
+
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
-            String query =  "SELECT * FROM Distances\n" +
-                            "WHERE UserId = " + user.getUserID();
+            String query = "SELECT * FROM Distances\n"
+                    + "WHERE UserId = " + user.getUserID();
 
             stmt = con.createStatement();
 
@@ -381,7 +511,7 @@ public class DatabaseInterface {
             }
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {
@@ -391,17 +521,17 @@ public class DatabaseInterface {
         return distanceInfo;
     }
 
-    private ArrayList<String> getSpeeds(User user) {
+    public ArrayList<String> getSpeeds(User user) {
 
         ArrayList<String> speedInfo = new ArrayList();
-        
+
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
-            String query =  "SELECT * FROM Speeds\n" +
-                            "WHERE UserId = " + user.getUserID();
+            String query = "SELECT * FROM Speeds\n"
+                    + "WHERE UserId = " + user.getUserID();
 
             stmt = con.createStatement();
 
@@ -416,7 +546,7 @@ public class DatabaseInterface {
             }
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {
@@ -426,17 +556,17 @@ public class DatabaseInterface {
         return speedInfo;
     }
 
-    private ArrayList<String> getCalories(User user) {
-        
+    public ArrayList<String> getCalories(User user) {
+
         ArrayList<String> calorieInfo = new ArrayList();
-        
+
         try {
 
             con = DriverManager.getConnection(url, userName, pwd);
 
             Statement stmt;
-            String query =  "SELECT * FROM Calories\n" +
-                            "WHERE UserId = " + user.getUserID();
+            String query = "SELECT * FROM Calories\n"
+                    + "WHERE UserId = " + user.getUserID();
 
             stmt = con.createStatement();
 
@@ -451,7 +581,7 @@ public class DatabaseInterface {
             }
 
             stmt.close();
-            
+
             con.close();
 
         } catch (SQLException ex) {

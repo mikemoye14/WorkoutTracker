@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import objs.User;
 
 /**
  * InitDatabase.java 
@@ -21,6 +23,8 @@ public class InitDatabase {
     private static final String userName = "mike";
     private static final String pwd = "mike";
     private static Connection con;
+
+    private static User user;
 
     public static void main(String[] args) {
         try {
@@ -176,10 +180,18 @@ public class InitDatabase {
                 stmt.close();
 
                 System.out.println("Tables Created.");
-
-                con.close();
-
+                
+                
+                
+                System.out.println("Filling Tables with Dummy Data...");
+                
+                DatabaseInterface.dummyData();
+                
+                System.out.println("Done!");
+                
                 System.out.println("Closing DB Connection.");
+                
+                con.close();
 
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
