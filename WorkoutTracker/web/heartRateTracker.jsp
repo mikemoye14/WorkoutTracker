@@ -193,7 +193,7 @@
                         }
                         if (counter === 0) {
                             clearInterval(coolDown);
-                            stop false;
+                            stop = false;
                         }
                     }, interval);
                 }
