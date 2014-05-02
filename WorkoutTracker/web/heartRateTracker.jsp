@@ -205,7 +205,7 @@
     </head>
     <body>
 
-        <table style="margin: auto; border: 5px solid black; margin-top: 50px; background-color: white; border-radius: 10px; padding-bottom: 0px;">
+        <table style="margin: auto; border: 5px solid black; margin-top: 50px; background-color: white; border-radius: 10px; padding-bottom: 0px; ">
             <tr>
                 <td></td>
                 <td style="text-align: center; background-color: white; padding-top: 20px; padding-bottom: 10px;">

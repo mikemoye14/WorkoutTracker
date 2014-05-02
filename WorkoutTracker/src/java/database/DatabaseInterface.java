@@ -66,6 +66,10 @@ public class DatabaseInterface {
         user = u;
 
     }
+    
+    public DatabaseInterface() {
+
+    }
 
     private void createNewUser() {
 
@@ -132,6 +136,45 @@ public class DatabaseInterface {
 
     }
 
+    private ArrayList<String> getUsers() {
+        
+        ArrayList<String> users = new ArrayList();
+        
+        try {
+
+            con = DriverManager.getConnection(url, userName, pwd);
+
+            //create blank user
+            Statement stmt;
+            String query = "SELECT * FROM xUsers";
+
+            stmt = con.createStatement();
+            stmt.execute(query);
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                users.add(rs.getString("fName"));
+                users.add(rs.getString("lName"));
+                users.add(rs.getString("Age"));
+
+            }
+
+            stmt.close();
+            
+            con.close();
+            
+            System.out.print(users.get(0));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;
+
+    }
+    
     private void updateHeartRate(User user, String date, String time, int rate) {
         try {
 

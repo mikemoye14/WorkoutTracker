@@ -64,10 +64,10 @@
             </tr>
             <tr>
                 <td colspan="3" style=" height: 250px; vertical-align: middle;">
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black;" onclick="javascript: window.location.href='./heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">HEART RATE</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black;">DISTANCE</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black;">SPEED</div>
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black;">CALORIES</div>
+                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px; border-top: 2px solid black;" onclick="javascript: window.location.href='./heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">HEART RATE</div>
+                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px;">DISTANCE</div>
+                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px;">SPEED</div>
+                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black; padding: 10px; border-bottom: 2px solid black;">CALORIES</div>
                 </td>
             </tr>
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">

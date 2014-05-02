@@ -144,7 +144,7 @@ public class InitDatabase {
                         + "    UserId INT,\n"
                         + "    speedDate DATE,\n"
                         + "    speedTime TIME,\n"
-                        + "    distance INT,\n"
+                        + "    speed INT,\n"
                         + "    \n"
                         + "    CONSTRAINT pk_Speeds PRIMARY KEY (UserId, speedDate, speedTime),\n"
                         + "\n"

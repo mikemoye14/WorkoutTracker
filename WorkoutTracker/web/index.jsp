@@ -4,7 +4,16 @@
     Author     : Mike Moye <mtm5313@psu.edu>
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="objs.User" contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+
+    User xUser = (User) request.getAttribute("user");
+
+    User user = new User("Mike", "M", 18);
+
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +22,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="./resources/js/jquery-latest.js"></script>
         <script type="text/javascript">
+            function hideStart(){
+                $('.start').hide();
+                $('.settings').show();
+            }
             
         </script>
         <style type="text/css">
@@ -64,9 +77,24 @@
                 </td>
                 <td></td>                
             </tr>
-            <tr>
-                <td colspan="3" style=" height: 250px; vertical-align: middle;">
-                    <div style="width: 250px; text-align: center; vertical-align: middle; border: 1px solid black;" onclick="javascript: window.location.href='./mainMenu.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">START</div>
+            <tr class="start">
+                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px; ">
+                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: window.location.href='./mainMenu.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">START</div>
+                </td>
+            </tr>
+            <tr class="start">
+                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px;">
+                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: hideStart();" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">SETTINGS</div>
+                </td>
+            </tr>
+            <tr style="display: none;" class="settings">
+                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px;">
+                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: hideStart();" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">LOGIN</div>
+                </td>
+            </tr>
+            <tr style="display: none;" class="settings">
+                <td colspan="3" style="padding-bottom: 25px; padding-top: 25px;">
+                    <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: hideStart();" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">NEW USER</div>
                 </td>
             </tr>
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">
