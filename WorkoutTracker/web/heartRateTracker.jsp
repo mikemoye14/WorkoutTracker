@@ -270,7 +270,7 @@
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">
                 <td colspan="3" style="background-color: black; margin-bottom: 0px; padding-bottom: 0px; text-align: center;">
                     <div id="menuButton" onclick="javascript: alert('Settings Menu Coming Soon!');"></div>
-                    <div id="homeButton" onclick="javascript: window.location.href = './index.html';"></div>
+                    <div id="homeButton" onclick="javascript: window.location.href = './index.jsp';"></div>
                     <div id="backButton" onclick="javascript: history.go(-1);"></div>
                 </td>
             </tr>
