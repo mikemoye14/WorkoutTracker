@@ -22,39 +22,43 @@
         users = getUsersInterface.getUsers();
 
         userTable
-                = "<table style=\"margin: auto; width: 100%;\">"
-                + " <tr>"
-                + "     <th style=\"text-align: center; padding-right: 50px;\">ID</th style=\"text-align: center;\"><th style=\"text-align: left;\">NAME</th><th style=\"text-align: center;\">AGE</th>"
-                + " </tr>"
-                + " <tr>"
-                + "     <th colspan=\"3\"><hr /></th>"
-                + " </tr>";
+                = "<form id=\"loadUserForm\" method=\"GET\" action=\"\">'\n"
+                + "+ '<table style=\"margin: auto; width: 100%;\">'\n"
+                + "+ ' <tr>'\n"
+                + "+ '     <th style=\"text-align: center; padding-right: 50px;\">ID</th style=\"text-align: center;\"><th style=\"text-align: left;\">NAME</th><th style=\"text-align: center;\">AGE</th>'\n"
+                + "+ ' </tr>'\n"
+                + "+ ' <tr>'\n"
+                + "+ '     <th colspan=\"3\"><hr /></th>'"
+                + "+ ' </tr>'\n";
 
         if (users.isEmpty()) {
             userTable
-                    += " <tr>"
-                    + "     <td style=\"text-align: left;\" colspan=\"3\">There are no Users to show on this list</td>"
-                    + " </tr>";
+                    += "+ ' <tr>'\n"
+                    + "+ '     <td style=\"text-align: left;\" colspan=\"3\">There are no Users to show on this list</td>'\n"
+                    + "+ ' </tr>'\n";
         } else {
 
             for (User used : users) {
-                userTable
-                        += "<tr onmouseover=\"javascript: "
-                        + "     $(this).css(\\'cursor\\', \\'pointer\\'); "
-                        + "     $(this).css(\\'color\\', \\'white\\'); "
-                        + "     $(this).css(\\'background-color\\', \\'#5F74E2\\');\" "
+                userTable 
+                        += "+ '<tr id=\"" + String.valueOf(used.getUserID()) + "\" name=\"user\" onclick=\"javascript: getId($(this).attr(\\'id\\'));\" class=\"userToLoad\" onmouseover=\"javascript: "
+                        + " $(this).css(\\'cursor\\', \\'pointer\\'); "
+                        + " $(this).css(\\'color\\', \\'white\\'); "
+                        + " $(this).css(\\'background-color\\', \\'#5F74E2\\');\" "
                         + " onmouseout=\"javascript: "
-                        + "     $(this).css(\\'cursor\\', \\'default\\');"
-                        + "     $(this).css(\\'background-color\\', \\'white\\');"
-                        + "     $(this).css(\\'color\\', \\'black\\');\">"
-                        + "<td style=\"text-align: center; padding-right: 50px;\">" + String.valueOf(used.getUserID()) + "</td>"
-                        + "<td style=\"text-align: left;\">" + used.getFName() + " " + used.getLName() + "</td>"
-                        + "<td style=\"text-align: center;\">" + String.valueOf(used.getAge()) + "</td>"
-                        + " </tr>";
+                        + " $(this).css(\\'cursor\\', \\'default\\');'\n"
+                        + "+ ' $(this).css(\\'background-color\\', \\'white\\');"
+                        + " $(this).css(\\'color\\', \\'black\\');\">'\n"
+                        + "+ '<td style=\"text-align: center; padding-right: 50px;\">" + String.valueOf(used.getUserID()) + "</td>'\n"
+                        + "+ '<td style=\"text-align: left;\">" + used.getFName() + " " + used.getLName() + "</td>'\n"
+                        + "+ '<td style=\"text-align: center;\">" + String.valueOf(used.getAge()) + "</td>'\n"
+                        + "+ '</tr>'\n";
+                
             }
         }
 
-        userTable += "</table>";
+        userTable +=
+                "+ '</table>'\n"
+                + "+ '</form>";
 
     } catch (Exception x) {
         x.printStackTrace();
@@ -70,23 +74,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="./resources/js/jquery-latest.js"></script>
         <script type="text/javascript">
-                    function hideStart() {
-                    $('.start').hide();
-                    $('.settings').show();
-                    }
+            
+            var selectedUser;
+            
+            function getId(id){
+                //alert(id);
+                
+                var f = document.getElementById('loadUserForm');
+                var s = document.createElement("input");
+                s.type="hidden"; s.name="userId"; s.value=id; s.id="userId";            
+                f.appendChild(s);
+
+                f.submit();
+            }
+            
+            function hideStart() {
+                $('.start').hide();
+                $('.settings').show();
+            }
             function showUsers() {
-            $('.settings').hide();
-                    
-                    $('#users').append('<%= userTable %>');
-                    $('#userRow').show();
+                $('.settings').hide();
+
+                $('#users').append('<%= userTable %>');
+                $('#userRow').show();
             }
             function showNewUser() {
-            $('.settings').hide();
-                    $('#newUser').show();
+                $('.settings').hide();
+                $('#newUser').show();
             }
-            $(document).ready(function() {
+            //$(document).ready(function() {
 
-            
+            /*
              $('.user').mouseover(function() {
              
              alert('gotHere');
@@ -100,9 +118,10 @@
              $(this).css('color', 'black');
              $(this).css('background-color', 'white');
              });
-             
+             */
 
-            });</script>
+            //});
+        </script>
 
         <style type="text/css">
             #menuButton{
@@ -157,43 +176,43 @@
             <tr class="start">
                 <td colspan="3" style="padding-bottom: 10px;">
                     <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: window.location.href = './mainMenu.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer');
-                                        $(this).css('color', 'white');
-                                        $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
-                                                            $(this).css('background-color', 'white');
-                                                            $(this).css('color', 'black');">START</div>
+                            $(this).css('color', 'white');
+                            $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
+                                    $(this).css('background-color', 'white');
+                                    $(this).css('color', 'black');">START</div>
                 </td>
             </tr>
             <tr class="start">
                 <td colspan="3" style="padding-bottom: 10px;">
                     <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: hideStart();" onmouseover="javascript: $(this).css('cursor', 'pointer');
-                                        $(this).css('color', 'white');
-                                        $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
-                                                            $(this).css('background-color', 'white');
-                                                            $(this).css('color', 'black');">SETTINGS</div>
+                            $(this).css('color', 'white');
+                            $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
+                                    $(this).css('background-color', 'white');
+                                    $(this).css('color', 'black');">SETTINGS</div>
                 </td>
             </tr>
             <tr style="display: none;" class="settings">
                 <td colspan="3" style="padding-bottom: 10px;">
                     <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: showUsers();" onmouseover="javascript: $(this).css('cursor', 'pointer');
-                                        $(this).css('color', 'white');
-                                        $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
-                                                            $(this).css('background-color', 'white');
-                                                            $(this).css('color', 'black');">LOGIN</div>
+                            $(this).css('color', 'white');
+                            $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
+                                    $(this).css('background-color', 'white');
+                                    $(this).css('color', 'black');">LOGIN</div>
                 </td>
             </tr>
             <tr style="display: none;" class="settings">
                 <td colspan="3" style="padding-bottom: 10px;">
                     <div style="width: 250px; text-align: center; border: 1px solid black; padding: 25px;" onclick="javascript: showNewUser();" onmouseover="javascript: $(this).css('cursor', 'pointer');
-                                        $(this).css('color', 'white');
-                                        $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
-                                                            $(this).css('background-color', 'white');
-                                                            $(this).css('color', 'black');">NEW USER</div>
+                            $(this).css('color', 'white');
+                            $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
+                                    $(this).css('background-color', 'white');
+                                    $(this).css('color', 'black');">NEW USER</div>
                 </td>
             </tr>
             <tr  id="userRow" style="display: none;">
                 <td id="users" colspan="3" style=" text-align: center; padding-bottom: 10px; width: 250px;">
                     <h2 style="color: #5F74E2;">LOGIN</h2>
-                    <span style="color: red; text-align: left;">Click your user account.</span>
+                    <span style="color: red; text-align: left;padding-bottom: 10px;">Click your user account.</span>
                     <br />
                 </td>
             </tr>
@@ -228,7 +247,7 @@
                 <td colspan="3" style="background-color: black; margin-bottom: 0px; padding-bottom: 0px; text-align: center;">
                     <div id="menuButton" onclick="javascript: alert('Settings Menu Coming Soon!');"></div>
                     <div id="homeButton" onclick="javascript: window.location.href = './index.jsp';"></div>
-                    <div id="backButton" onclick="javascript: history.go( - 1);"></div>
+                    <div id="backButton" onclick="javascript: history.go(-1);"></div>
                 </td>
             </tr>
         </table>

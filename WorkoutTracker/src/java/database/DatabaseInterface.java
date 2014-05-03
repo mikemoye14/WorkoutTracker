@@ -128,6 +128,7 @@ public class DatabaseInterface {
         di.updateSpeed(user, "04/20/2014", "04:20", 100);
         di.updateCalories(user, "04/20/2014", "04:20", 800);
         
+        
         di = new DatabaseInterface(new User("Bryan ", "Fury", 38));
         di.createNewUser();
         
@@ -167,7 +168,9 @@ public class DatabaseInterface {
         di.updateDistance(user, "04/20/2014", "04:20", 200);
         di.updateSpeed(user, "04/20/2014", "04:20", 100);
         di.updateCalories(user, "04/20/2014", "04:20", 800);
-
+        
+        
+                
         hrData = di.getHeartRates(user);
         distanceData = di.getDistances(user);
         speedData = di.getSpeeds(user);
