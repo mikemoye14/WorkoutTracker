@@ -178,7 +178,12 @@
                 function stopWorkout() {
                     coolDown = setInterval(function() {
                         stop = true;
-                        if (counter > -1) {
+                        
+                        if (counter === 0) {
+                            clearInterval(coolDown);
+                            stop = false;
+                        }
+                        if (counter > 0) {
                             $('#bpm').html(counter - 1);
                             counter--;
                         }
@@ -191,10 +196,7 @@
                         if (counter >= thr) {
                             $('#heart').attr('src', './resources/images/fullHeart.png');
                         }
-                        if (counter === 0) {
-                            clearInterval(coolDown);
-                            stop = false;
-                        }
+                        
                     }, interval);
                 }
                 
