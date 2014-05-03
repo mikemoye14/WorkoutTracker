@@ -80,7 +80,7 @@
                 var sus;
                 var coolDown;
                 var stop;
-                var w, x, y, z;
+                var w, x, y, z, hr;
 
                 var counter = 0;
                 var interval = 50;
@@ -97,6 +97,8 @@
                 });
 
                 $('#stopButton').click(function() {
+                    hr = $('#bpm').html();
+                    
                     if (w) {
                         clearInterval(getToRestHeartRate);
                         w = false;
@@ -115,7 +117,26 @@
                     }
                     interval = 50;
                     stopWorkout();
+
+                    setTimeout(function() {
+                        var log = confirm('Log Workout?');
+                        if (log) {
+                            logWorkout();
+                        }else{
+                            
+                        }
+                    }, 3000);
+
                 });
+
+                function logWorkout(){
+                    var f = document.getElementById('logWorkout');
+                    var s = document.createElement("input");
+                    s.type="hidden"; s.name="heartRate"; s.value=hr; s.id="heartRate";            
+                    f.appendChild(s);
+                    alert('We logged a heart rate of: ' + hr);
+                    f.submit();
+                }
 
                 function start() {
                     getToRestHeartRate = setInterval(function() {
@@ -178,7 +199,7 @@
                 function stopWorkout() {
                     coolDown = setInterval(function() {
                         stop = true;
-                        
+
                         if (counter === 0) {
                             clearInterval(coolDown);
                             stop = false;
@@ -196,10 +217,10 @@
                         if (counter >= thr) {
                             $('#heart').attr('src', './resources/images/fullHeart.png');
                         }
-                        
+
                     }, interval);
                 }
-                
+
             });
         </script>
 
@@ -277,5 +298,6 @@
                 </td>
             </tr>
         </table>
+        <form name="logWorkout" id="logWorkout" />
     </body>
 </html>
