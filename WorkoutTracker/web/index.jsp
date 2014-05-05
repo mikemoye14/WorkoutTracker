@@ -22,7 +22,7 @@
         users = getUsersInterface.getUsers();
 
         userTable
-                = "<form id=\"loadUserForm\" method=\"GET\" action=\"\">'\n"
+                = "<form id=\"loadUserForm\" method=\"GET\" action=\"workoutServlet\">'\n"
                 + "+ '<table style=\"margin: auto; width: 100%;\">'\n"
                 + "+ ' <tr>'\n"
                 + "+ '     <th style=\"text-align: center; padding-right: 50px;\">ID</th style=\"text-align: center;\"><th style=\"text-align: left;\">NAME</th><th style=\"text-align: center;\">AGE</th>'\n"
@@ -218,7 +218,7 @@
             </tr>
             <tr  id="newUser" style="display: none;">
                 <td colspan="3" style="padding-bottom: 10px; width: 250px;">
-                    <form action="">
+                    <form action="workoutServlet">
                         <table style="margin: auto;">
                             <tr>
                                 <td colspan="2" style="text-align: center; color: #5F74E2;">                                    
