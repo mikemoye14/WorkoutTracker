@@ -42,9 +42,10 @@ public class loginServlet extends HttpServlet {
             
             User user = DatabaseInterface.getUser(id);
             
-            dispatcher = request.getRequestDispatcher("mainMenu.jsp?age=" + user.getAge());
-            dispatcher.forward(request, response);
-            
+            dispatcher = request.getRequestDispatcher("mainMenu.jsp");
+            request.setAttribute("userId", user.getUserID());
+            request.setAttribute("age", user.getAge());
+            dispatcher.forward(request, response);            
         }
     }
 

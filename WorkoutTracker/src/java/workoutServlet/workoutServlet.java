@@ -48,22 +48,13 @@ public class workoutServlet extends HttpServlet {
             @Override
             public void run() {
                 try 
-                {
-                    
+                {                    
                     dispatcher = request.getRequestDispatcher("MainMenu.jsp");
                     request.setAttribute("distance", sim.getDistance());
                     request.setAttribute("heartRate", sim.getHeartRate());
                     request.setAttribute("speed", sim.getSpeed());
                     request.setAttribute("calories", sim.getCalories());
                     dispatcher.forward(request, response);
-                    
-                    /*
-                    System.out.println("Distance: " + sim.getDistance() + " miles");
-                    System.out.println("Heart Rate: " + sim.getHeartRate() + " BPM");
-                    System.out.println("Speed: " + sim.getSpeed() + " mph");
-                    System.out.println("Calories: " + sim.getCalories() + " calories");
-                    Sim.setNewValues();
-                    */
                 }
                 
                 catch (Exception x) 
