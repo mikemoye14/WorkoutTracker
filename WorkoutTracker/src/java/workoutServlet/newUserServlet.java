@@ -51,8 +51,8 @@ public class newUserServlet extends HttpServlet {
             di.createNewUser();            
             
             dispatcher = request.getRequestDispatcher("mainMenu.jsp");
-            request.setAttribute("userId", user.getUserID());
-            request.setAttribute("age", user.getAge());
+            request.setAttribute("userId", String.valueOf(user.getUserID()));
+            request.setAttribute("age", String.valueOf(user.getAge()));
             dispatcher.forward(request, response);
         }
     }
