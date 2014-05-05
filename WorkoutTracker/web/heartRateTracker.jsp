@@ -4,15 +4,26 @@
     Author     : Mike Moye
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="database.CurrentUser"%>
+<%@page import="database.DatabaseInterface"%>
 <%@page import="objs.User" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
 
-    User xUser = (User) request.getAttribute("user");
-
+    //User xUser = (User) request.getAttribute("user");
+    
+    //User user = DatabaseInterface.getUser(CurrentUser.getUserId());
+        
     User user = new User("Mike", "M", 18);
-
     int age = user.getAge();
+    
+    int ehr = 220 - age; //calc target heart rate
+    int thr = Integer.parseInt(String.valueOf((int)(ehr * .5))); //calc max heart rate
+    
+    int mhr = Integer.parseInt(String.valueOf((int)(ehr * .85)));
+
+    
 
 %>
 
@@ -71,8 +82,8 @@
             $(document).ready(function() {
 
                 var age = <%= age%>; //get age
-                var mhr = 220 - age; //calc target heart rate
-                var thr = parseInt(mhr * .5); //calc max heart rate
+                var mhr = <%= mhr%>; //calc target heart rate
+                var thr = <%= thr%>; //calc max heart rate
 
                 var getToRestHeartRate;
                 var getToTarget;

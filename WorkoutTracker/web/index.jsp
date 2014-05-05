@@ -19,7 +19,7 @@
 
         ArrayList<User> users;
 
-        users = getUsersInterface.getUsers();
+        users = getUsersInterface.getAllUsers();
 
         userTable
                 = "<form id=\"loadUserForm\" method=\"GET\" action=\"workoutServlet\">'\n"
@@ -218,7 +218,7 @@
             </tr>
             <tr  id="newUser" style="display: none;">
                 <td colspan="3" style="padding-bottom: 10px; width: 250px;">
-                    <form action="workoutServlet">
+                    <form action="newUserServlet">
                         <table style="margin: auto;">
                             <tr>
                                 <td colspan="2" style="text-align: center; color: #5F74E2;">                                    

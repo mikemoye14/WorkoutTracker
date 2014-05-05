@@ -102,7 +102,7 @@ public class DatabaseInterface {
         
         ArrayList<User> users;
         
-        users = di.getUsers();
+        users = di.getAllUsers();
         System.out.println("Users:");
         
         for (User user1 : users) {
@@ -189,7 +189,7 @@ public class DatabaseInterface {
         
         ArrayList<User> users;
         
-        users = di.getUsers();
+        users = di.getAllUsers();
         
         System.out.println("");
         System.out.println("Users:");
@@ -274,7 +274,7 @@ public class DatabaseInterface {
 
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getAllUsers() {
 
         ArrayList<User> users = new ArrayList();
 
@@ -307,6 +307,42 @@ public class DatabaseInterface {
         }
 
         return users;
+
+    }
+    
+    public static User getUser(int userId) {
+
+        User xUser = new User();
+
+        try {
+
+            con = DriverManager.getConnection(url, userName, pwd);
+
+            //create blank user
+            Statement stmt;
+            String query = "SELECT * FROM xUsers WHERE userId = " + userId;
+
+            stmt = con.createStatement();
+            stmt.execute(query);
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+
+                xUser = new User(rs.getString("fName"), rs.getString("lName"), Integer.parseInt(rs.getString("Age")));
+
+            }
+
+            stmt.close();
+
+            con.close();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return user;
 
     }
 
