@@ -4,9 +4,17 @@
         <servlet-name>workoutServlet</servlet-name>
         <servlet-class>workoutServlet.workoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>newUserServlet</servlet-name>
+        <servlet-class>workoutServlet.newUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>workoutServlet</servlet-name>
         <url-pattern>/workoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newUserServlet</servlet-name>
+        <url-pattern>/newUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
