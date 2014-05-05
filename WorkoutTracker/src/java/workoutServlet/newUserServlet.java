@@ -50,7 +50,7 @@ public class newUserServlet extends HttpServlet {
             di = new DatabaseInterface(user);
             di.createNewUser();            
             
-            dispatcher = request.getRequestDispatcher("mainMenu.jsp");
+            dispatcher = request.getRequestDispatcher("/mainMenu.jsp");
             request.setAttribute("userId", String.valueOf(user.getUserID()));
             request.setAttribute("age", String.valueOf(user.getAge()));
             dispatcher.forward(request, response);

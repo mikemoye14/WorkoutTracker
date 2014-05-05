@@ -7,6 +7,7 @@
 package workoutServlet;
 
 import Simulation.SimulatedValues;
+import database.DatabaseInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Timer;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.ImageIcon;
+import objs.User;
 
 /**
  *
@@ -34,7 +36,8 @@ public class workoutServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    SimulatedValues sim = new SimulatedValues(20, 1);
+    //SimulatedValues sim = new SimulatedValues(20, 1);
+    SimulatedValues sim;
     RequestDispatcher dispatcher;
     
     protected void processRequest(final HttpServletRequest request, final HttpServletResponse response)
@@ -42,14 +45,19 @@ public class workoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
+            String userId;
             Timer timer = new Timer();
+            
+            userId = request.getParameter("userId");
+            User user = DatabaseInterface.getUser(Integer.parseInt(userId));
+            sim = new SimulatedValues(user.getAge(), 1);
             
             timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 try 
                 {                    
-                    dispatcher = request.getRequestDispatcher("MainMenu.jsp");
+                    dispatcher = request.getRequestDispatcher("/mainMenu.jsp");
                     request.setAttribute("distance", sim.getDistance());
                     request.setAttribute("heartRate", sim.getHeartRate());
                     request.setAttribute("speed", sim.getSpeed());
@@ -59,10 +67,10 @@ public class workoutServlet extends HttpServlet {
                 
                 catch (Exception x) 
                 {
-                    
+                    System.out.println(x);
                 }
             }
-        }, 1000, 1000);
+        }, 50, 1000);
         }
     }
 
