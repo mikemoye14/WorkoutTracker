@@ -12,7 +12,6 @@ import java.util.Random;
  */
 public class SimulatedValues {
     private int age;                //Age of User
-    private int weight;             //Weight of User
     private int timeDiv;            //The time division between each get statement in seconds
         
     private int heartRate;          //the current heart rate of the user
@@ -24,22 +23,21 @@ public class SimulatedValues {
     private GPS gps;                //the GPS location of the user
     private double calories;        //the calories burnt by the user
     
-    public SimulatedValues(int ag, int wait, int timeDivision){
-        age = ag;
-        weight = wait;
+    public SimulatedValues(int Age, int timeDivision){
+        age = Age;
         timeDiv = timeDivision;
         calories = 0.0;
-        distance = 0.0;
-        heartRate = (int)(.65 * (double)maxHeartRate);   
+        distance = 0.0;   
         gps = new GPS(timeDiv);
         
         maxHeartRate = 220 - age;
         maxTarHeartRate = (int)(.85 * (double)maxHeartRate);
         minTarHeartRate = (int)(.5 * (double)maxHeartRate);
+        heartRate = (int)(.65 * (double)maxHeartRate);
     }
     
-    public void setWeight(int wait){
-        weight = wait;
+    public SimulatedValues(String Age, String timeDivision){
+        this(Integer.parseInt(Age), Integer.parseInt(timeDivision));
     }
     
     public void setAge(int ag){
@@ -107,6 +105,6 @@ public class SimulatedValues {
         else if(heartRate < minTarHeartRate)
             heartRate = minTarHeartRate;
         
-        calories = calories + (((((speed * weight * .0053) + (.0083*speed*speed*speed)) * 7.2)/3600)*timeDiv);
+        calories = calories + (((((speed * 170 * .0053) + (.0083*speed*speed*speed)) * 7.2)/3600)*timeDiv);
     }
 }
