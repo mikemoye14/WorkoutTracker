@@ -16,11 +16,12 @@
     
     String age = "40";
     
-    if(request.getParameter("age") != null)
+    String id = (String)request.getAttribute("userId");
+    
+    if(request.getAttribute("age") != null)
         
-    {
-        
-        age = request.getParameter("age");
+    {        
+        age = (String)request.getAttribute("age");
     }
     
     //User user = new User("Mike", "M", 18);
@@ -63,7 +64,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="./resources/js/jquery-latest.js"></script>
         <script type="text/javascript">
-            setTimeout(function)
+            function getId(id){
+                //alert(id);
+                
+                var f = document.getElementById('workout');
+                var s = document.createElement("input");
+                s.type="hidden"; s.name="userId"; s.value=id;            
+                f.appendChild(s);
+
+                f.submit();
+            }
         </script>
         <style type="text/css">
             #menuButton{
@@ -106,6 +116,7 @@
         </style>
     </head>
     <body>
+        
         <table style="margin: auto; width: 320px; height: 480px; border: 5px solid black; background-color: white; border-radius: 10px; padding-bottom: 0px;">
             <tr>
                 <td></td>
@@ -142,9 +153,10 @@
                     </div>
                 </td>
             </tr>
+            <form id="workout" action="workoutServlet"/>
             <tr style="margin-top: 0;">
                 <td style="background-color: white; padding: 5px;">
-                    <div id="startButton" style="background-color: green; border: 2px solid black; text-align: center;  margin-right: -25px; margin-left: 25px; padding: 10px; width: 50px; border-radius: 10px;"><strong>START</strong></div>
+                    <div onclick="javascript: getId(<%= id %>);" id="startButton" style="background-color: green; border: 2px solid black; text-align: center;  margin-right: -25px; margin-left: 25px; padding: 10px; width: 50px; border-radius: 10px;"><strong>START</strong></div>
                 </td>
                 <td></td>
                 <td style=" background-color: white; padding: 5px;">
