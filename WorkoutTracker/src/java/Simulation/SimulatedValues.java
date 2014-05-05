@@ -23,26 +23,26 @@ public class SimulatedValues {
     private GPS gps;                //the GPS location of the user
     private double calories;        //the calories burnt by the user
     
-    public SimulatedValues(int Age, int timeDivision){
-        age = Age;
+    public SimulatedValues(int age, int timeDivision){
+        this.age = age;
         timeDiv = timeDivision;
         calories = 0.0;
         distance = 0.0;   
         gps = new GPS(timeDiv);
         
-        maxHeartRate = 220 - age;
+        maxHeartRate = 220 - this.age;
         maxTarHeartRate = (int)(.85 * (double)maxHeartRate);
         minTarHeartRate = (int)(.5 * (double)maxHeartRate);
-        heartRate = (int)(.65 * (double)maxHeartRate);
+        heartRate = 60;
     }
     
     public SimulatedValues(String Age, String timeDivision){
         this(Integer.parseInt(Age), Integer.parseInt(timeDivision));
     }
     
-    public void setAge(int ag){
-        age = ag;
-        maxHeartRate = 220 - age;
+    public void setAge(int age){
+        this.age = age;
+        maxHeartRate = 220 - this.age;
         maxTarHeartRate = (int)(.85 * (double)maxHeartRate);
         minTarHeartRate = (int)(.5 * (double)maxHeartRate);
     }
@@ -95,10 +95,15 @@ public class SimulatedValues {
         oldSpeed = speed;
         speed = (dis / timeDiv) * 3600;
         
-        if(speed > oldSpeed)
+        if(heartRate < .65 * maxHeartRate){
+            heartRate+=2;
+        }
+        else if(speed > oldSpeed)
             heartRate = heartRate + Math.abs(randomNum.nextInt() % 4);
         else if (speed < oldSpeed)
             heartRate = heartRate - Math.abs(randomNum.nextInt() % 2);
+        
+        
         
         if(heartRate > maxTarHeartRate)
             heartRate = maxHeartRate;
