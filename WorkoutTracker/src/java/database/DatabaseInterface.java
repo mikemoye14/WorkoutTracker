@@ -342,7 +342,7 @@ public class DatabaseInterface {
             Logger.getLogger(DatabaseInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return user;
+        return xUser;
 
     }
 
