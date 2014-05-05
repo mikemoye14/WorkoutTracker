@@ -13,17 +13,27 @@
     String color = "black";
     //User user = (User) request.getAttribute("user");
     
-    User user = new User("Mike", "M", 18);
-
-    int age = user.getAge();
     
-    SimulatedValues sv = new SimulatedValues(age, 1);
+    String age = "40";
+    
+    if(request.getParameter("age") != null)
+        
+    {
+        
+        age = request.getParameter("age");
+    }
+    
+    //User user = new User("Mike", "M", 18);
+
+    //int age = user.getAge();
+    
+    SimulatedValues sv = new SimulatedValues(Integer.parseInt(age), 1);
     
     int hr = sv.getHeartRate();
     double distance = sv.getDistance();
     double speed = sv.getSpeed();
     double calories = sv.getCalories();
-    int ehr = 220 - age; //calc target heart rate
+    int ehr = 220 - Integer.parseInt(age); //calc target heart rate
     int thr = Integer.parseInt(String.valueOf((int)(ehr * .5))); //calc max heart rate
     
     int mhr = Integer.parseInt(String.valueOf((int)(ehr * .85)));

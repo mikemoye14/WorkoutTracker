@@ -22,7 +22,7 @@
         users = getUsersInterface.getAllUsers();
 
         userTable
-                = "<form id=\"loadUserForm\" method=\"GET\" action=\"workoutServlet\">'\n"
+                = "<form id=\"loadUserForm\" method=\"GET\" action=\"loginServlet\">'\n"
                 + "+ '<table style=\"margin: auto; width: 100%;\">'\n"
                 + "+ ' <tr>'\n"
                 + "+ '     <th style=\"text-align: center; padding-right: 50px;\">ID</th style=\"text-align: center;\"><th style=\"text-align: left;\">NAME</th><th style=\"text-align: center;\">AGE</th>'\n"
@@ -82,7 +82,7 @@
                 
                 var f = document.getElementById('loadUserForm');
                 var s = document.createElement("input");
-                s.type="hidden"; s.name="userId"; s.value=id; s.id="userId";            
+                s.type="hidden"; s.name="userId"; s.value=id;            
                 f.appendChild(s);
 
                 f.submit();
