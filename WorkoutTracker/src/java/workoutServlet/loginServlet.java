@@ -20,7 +20,7 @@ import objs.User;
  *
  * @author Christian
  */
-public class newUserServlet extends HttpServlet {
+public class loginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,20 +38,13 @@ public class newUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
-            String fName, lName, age;
-            DatabaseInterface di;
+            int id = Integer.parseInt(request.getParameter("userId"));
             
-            fName = request.getParameter("fName");
-            lName = request.getParameter("lName");
-            age = request.getParameter("age");
-            
-            User user = new User(fName, lName, Integer.parseInt(age));
-            
-            di = new DatabaseInterface(user);
-            di.createNewUser();            
+            User user = DatabaseInterface.getUser(id);
             
             dispatcher = request.getRequestDispatcher("mainMenu.jsp?age=" + user.getAge());
             dispatcher.forward(request, response);
+            
         }
     }
 

@@ -8,6 +8,10 @@
         <servlet-name>newUserServlet</servlet-name>
         <servlet-class>workoutServlet.newUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>workoutServlet.loginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>workoutServlet</servlet-name>
         <url-pattern>/workoutServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>newUserServlet</servlet-name>
         <url-pattern>/newUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
