@@ -4,58 +4,72 @@
     Author     : Mike Moye <mtm5313@psu.edu>
 --%>
 
+<%@page import="java.io.File"%>
+<%@page import="java.util.TimerTask"%>
+<%@page import="java.util.Timer"%>
+<%@page import="objs.SimlatedValues"%>
 <%@page import="Simulation.SimulatedValues"%>
 <%@page import="objs.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% 
+<%
     
     String color = "black";
     //User user = (User) request.getAttribute("user");
-    
-    
+    int hr = 60;
+    double distance = 0;
+    double speed = 0;
+    double calories = 0;
     String age = "40";
-    
-    String id = (String)request.getAttribute("userId");
-    
-    if(request.getAttribute("age") != null)
-        
-    {        
-        age = (String)request.getAttribute("age");
-    }
-    
-    //User user = new User("Mike", "M", 18);
 
-    //int age = user.getAge();
-    
-    SimulatedValues sv = new SimulatedValues(Integer.parseInt(age), 1);
-    
-    int hr = sv.getHeartRate();
-    double distance = sv.getDistance();
-    double speed = sv.getSpeed();
-    double calories = sv.getCalories();
+    String id = "0";
+
+    String init = "no";
+
+    if ((String) request.getAttribute("init") == "yes") {
+
+        init = "yes";
+
+    } else {
+        id = (String) request.getAttribute("userId");
+
+        //out.print(id);
+        if (request.getAttribute("age") != null) {
+            age = (String) request.getAttribute("age");
+        }
+
+    //User user = new User("Mike", "M", 18);
+        //int age = user.getAge();
+        SimulatedValues sv = new SimulatedValues(Integer.parseInt(age), 1);
+
+        hr = sv.getHeartRate();
+        distance = sv.getDistance();
+        speed = sv.getSpeed();
+        calories = sv.getCalories();
+    }
     int ehr = 220 - Integer.parseInt(age); //calc target heart rate
-    int thr = Integer.parseInt(String.valueOf((int)(ehr * .5))); //calc max heart rate
-    
-    int mhr = Integer.parseInt(String.valueOf((int)(ehr * .85)));
-    
-    if(hr < thr){
-        
+    int thr = Integer.parseInt(String.valueOf((int) (ehr * .5))); //calc max heart rate
+
+    int mhr = Integer.parseInt(String.valueOf((int) (ehr * .85)));
+
+    if (hr < thr) {
+
         color = "blue";
-        
+
     }
-    if(hr > thr && hr < mhr){
-        
+    if (hr > thr && hr < mhr) {
+
         color = "green";
-        
+
     }
-    
-    if(hr > mhr){
-        
+
+    if (hr > mhr) {
+
         color = "red";
-        
+
     }
-    
+
+
 %>
 
 <!DOCTYPE html>
@@ -64,16 +78,91 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="./resources/js/jquery-latest.js"></script>
         <script type="text/javascript">
-            function getId(id){
+
+            var hr = '<%= hr%>';
+            var distance = '<%= distance%>';
+            var speed = '<%= speed%>';
+            var calories = '<%= calories%>';
+            var setValues;
+            var num = 0;
+
+            $(document).ready(function() {
+                $('#heartRate').html(hr);
+                $('#speed').html(speed);
+                $('#distance').html(distance);
+                $('#calories').html(calories);
+
+                getValues();
+
+            });
+
+            function getId(id) {
                 //alert(id);
-                
+
                 var f = document.getElementById('workout');
                 var s = document.createElement("input");
-                s.type="hidden"; s.name="userId"; s.value=id;            
+                s.type = "hidden";
+                s.name = "userId";
+                s.value = id;
                 f.appendChild(s);
 
                 f.submit();
             }
+            
+            function json(){
+                
+                //window.location.href = path;
+                
+                $.ajax({
+                    type: 'GET',
+                    url: './resources/json/values_' + num + '.js',
+                    async: false,
+                    jsonpCallback: 'getValues',
+                    contentType: "application/jsonp",
+                    dataType: 'jsonp',
+                    success: function(data, status) {
+
+                        //var values = data;
+                        //alert(status);
+                        hr = data.values[0].heartRate.toString();
+                        distance = data.values[0].distance.toString();
+                        speed = data.values[0].speed.toString();
+                        calories = data.values[0].calories.toString();
+                        
+                        //alert('hr: ' + hr + '\ndist: ' + distance + '\nsp: ' + speed + '\ncal: ' + calories);
+                        
+                        $('#heartRate').html(hr);
+                        $('#speed').html(speed);
+                        $('#distance').html(distance);
+                        $('#calories').html(calories);
+                    }
+
+                    });
+                
+            }
+
+            function getValues() {
+                var init = '<%= init%>';
+
+                //alert(init);
+
+                //alert(init);
+                if (init === "yes") {
+
+                    setValues = setInterval(function() {
+                        try{
+                            num++;
+                        json();
+                    }finally{
+                        setTimeout(5000);                        
+                    }
+                        
+                    }, 1000);
+
+                }
+
+            }
+
         </script>
         <style type="text/css">
             #menuButton{
@@ -116,7 +205,7 @@
         </style>
     </head>
     <body>
-        
+
         <table style="margin: auto; width: 320px; height: 480px; border: 5px solid black; background-color: white; border-radius: 10px; padding-bottom: 0px;">
             <tr>
                 <td></td>
@@ -127,36 +216,40 @@
             </tr>
             <tr>
                 <td colspan="3" style=" height: 250px; vertical-align: middle;">
-                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px; border-top: 2px solid black;" onclick="javascript: window.location.href='./heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer'); $(this).css('color', 'white'); $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default'); $(this).css('background-color', 'white'); $(this).css('color', 'black');">
-                        HEART RATE 
-                        <span id="heartRate" style="color: <%= color %>; font-weight: bolder; margin-left: 50px;">
-                            <%= hr %>
-                        </span>
+                    <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px; border-top: 2px solid black;" onclick="javascript: window.location.href = './heartRateTracker.jsp';" onmouseover="javascript: $(this).css('cursor', 'pointer');
+                            $(this).css('color', 'white');
+                            $(this).css('background-color', '#5F74E2');" onmouseout="javascript: $(this).css('cursor', 'default');
+                                    $(this).css('background-color', 'white');
+                                    $(this).css('color', 'black');">
+                        <table><tr><td style="text-align: center;">HEART RATE 
+                        </td>
+                                <td style="text-align: center;"><span id="heartRate" style="color: <%= color%>; font-weight: bolder; margin-left: 50px;">
+                        </span></td></tr></table>
                     </div>
                     <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;">
-                        DISTANCE
-                        <span id="distance" style="font-weight: bolder; margin-left: 50px;">
-                            <%= distance %>
-                        </span>
+                        <table><tr><td style="text-align: center;">DISTANCE
+                        </td>
+                                <td style="text-align: center;"><span id="distance" style="font-weight: bolder; margin-left: 50px;">
+                        </span></td></tr></table>
                     </div>
                     <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;">
-                        SPEED
-                        <span id="speed" style="font-weight: bolder; margin-left: 50px;">
-                            <%= speed %>
-                        </span>
+                        <table><tr><td style="text-align: center;">SPEED</td>
+                                <td style="text-align: center;"><span id="speed" style="font-weight: bolder; margin-left: 50px;">
+                                    </span></td></tr></table>
                     </div>
                     <div style="width: 100%; text-align: center; vertical-align: middle; border: 1px solid black; padding-top: 10px; padding-bottom: 10px;border-bottom: 2px solid black;">
-                        CALORIES
-                        <span id="calories" style="font-weight: bolder; margin-left: 50px;">
-                            <%= calories %>
-                        </span>
+                        <table><tr><td style="text-align: center;">CALORIES
+                        </td>
+                                <td style="text-align: center;"><span id="calories" style="font-weight: bolder; margin-left: 50px;">
+
+                        </span></td></tr></table>
                     </div>
                 </td>
             </tr>
             <form id="workout" action="workoutServlet"/>
             <tr style="margin-top: 0;">
                 <td style="background-color: white; padding: 5px;">
-                    <div onclick="javascript: getId(<%= id %>);" id="startButton" style="background-color: green; border: 2px solid black; text-align: center;  margin-right: -25px; margin-left: 25px; padding: 10px; width: 50px; border-radius: 10px;"><strong>START</strong></div>
+                    <div onclick="javascript: getId(<%= id%>);" id="startButton" style="background-color: green; border: 2px solid black; text-align: center;  margin-right: -25px; margin-left: 25px; padding: 10px; width: 50px; border-radius: 10px;"><strong>START</strong></div>
                 </td>
                 <td></td>
                 <td style=" background-color: white; padding: 5px;">
@@ -166,7 +259,7 @@
             <tr style="background-color: black; margin-bottom: 0px; padding-bottom: 0px;">
                 <td colspan="3" style="background-color: black; margin-bottom: 0px; padding-bottom: 0px; text-align: center;">
                     <div id="menuButton" onclick="javascript: alert('Settings Menu Coming Soon!');"></div>
-                    <div id="homeButton" onclick="javascript: window.location.href='./index.jsp';"></div>
+                    <div id="homeButton" onclick="javascript: window.location.href = './index.jsp';"></div>
                     <div id="backButton" onclick="javascript: history.go(-1);"></div>
                 </td>
             </tr>

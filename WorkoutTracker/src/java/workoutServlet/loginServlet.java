@@ -45,6 +45,7 @@ public class loginServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("/mainMenu.jsp");
             request.setAttribute("userId", String.valueOf(id));
             request.setAttribute("age", String.valueOf(user.getAge()));
+            request.setAttribute("init", "no");
             dispatcher.forward(request, response);            
         }
     }

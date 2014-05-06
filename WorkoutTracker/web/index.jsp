@@ -4,11 +4,12 @@
     Author     : Mike Moye <mtm5313@psu.edu>
 --%>
 
+<%@page import="database.InitDatabase"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="objs.User, database.DatabaseInterface" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-
+    
     User xUser = (User) request.getAttribute("user");
 
     String userTable = "";

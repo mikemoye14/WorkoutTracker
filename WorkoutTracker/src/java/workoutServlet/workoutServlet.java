@@ -8,18 +8,19 @@ package workoutServlet;
 
 import Simulation.SimulatedValues;
 import database.DatabaseInterface;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.ImageIcon;
-import objs.User;
+import objs.*;
 
 /**
  *
@@ -45,24 +46,35 @@ public class workoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
+            
             String userId;
             Timer timer = new Timer();
             
             userId = request.getParameter("userId");
             User user = DatabaseInterface.getUser(Integer.parseInt(userId));
             sim = new SimulatedValues(user.getAge(), 1);
+            dispatcher = request.getRequestDispatcher("/mainMenu.jsp");
+            request.setAttribute("init", "yes");
+            dispatcher.forward(request, response);
+            
+            final String path = getServletContext().getRealPath(request.getRequestURI()).replace("build\\web\\WorkoutTracker\\workoutServlet", "web\\resources\\json\\");
+            
+            //System.out.print(path);
             
             timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 try 
-                {                    
-                    dispatcher = request.getRequestDispatcher("/mainMenu.jsp");
-                    request.setAttribute("distance", sim.getDistance());
-                    request.setAttribute("heartRate", sim.getHeartRate());
-                    request.setAttribute("speed", sim.getSpeed());
-                    request.setAttribute("calories", sim.getCalories());
-                    dispatcher.forward(request, response);
+                {   
+                    System.out.println("Simulating Values...");
+                    SimlatedValues.setHeartRate(sim.getHeartRate());
+                    SimlatedValues.setDistance(sim.getDistance());
+                    SimlatedValues.setSpeed(sim.getSpeed());
+                    SimlatedValues.setCalories(sim.getCalories());                    
+                    WriteToFile.writeToFile(path); 
+                    WriteToFile.add();                    
+                    sim.setNewValues();
+                    
                 }
                 
                 catch (Exception x) 
@@ -70,9 +82,15 @@ public class workoutServlet extends HttpServlet {
                     System.out.println(x);
                 }
             }
-        }, 50, 1000);
+        }, 1, 1);
+            
+            
         }
+            
+            
     }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

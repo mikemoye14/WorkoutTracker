@@ -25,6 +25,8 @@ public class InitDatabase {
     private static Connection con;
 
     private static User user;
+    
+    private static boolean init = false;
 
     public static void main(String[] args) {
         try {
@@ -199,7 +201,15 @@ public class InitDatabase {
             }
         }
     }
-
+    
+    public static boolean getInit(){
+        return init;
+    }
+    
+    public void setInit(boolean i){
+        init = i;
+    }
+    
     public static void initDB() {
         try {
 
@@ -364,6 +374,8 @@ public class InitDatabase {
 
             }
         }
+        
+        init = true;
     }
 
 }
