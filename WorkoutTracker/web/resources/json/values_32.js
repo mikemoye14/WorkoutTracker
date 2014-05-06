@@ -1,9 +1,9 @@
 getValues({
     "values": [
         {
-            "heartRate": "126",
+            "heartRate": "133",
             "distance": "0.08",
-            "speed": "6.0",
+            "speed": "10.0",
             "calories": "1.0"
         }
     ]

@@ -1,10 +1,10 @@
 getValues({
     "values": [
         {
-            "heartRate": "174",
-            "distance": "4.97",
-            "speed": "11.0",
-            "calories": "68.0"
+            "heartRate": "194",
+            "distance": "5.1",
+            "speed": "15.0",
+            "calories": "70.0"
         }
     ]
 } );

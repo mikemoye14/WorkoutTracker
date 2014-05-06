@@ -3,7 +3,7 @@ getValues({
         {
             "heartRate": "136",
             "distance": "0.12",
-            "speed": "3.0",
+            "speed": "9.0",
             "calories": "2.0"
         }
     ]
